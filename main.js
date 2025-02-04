@@ -93,7 +93,6 @@ spinBtn.addEventListener('click', spinHandler);
 function spinHandler() {
   Tone.start();
   counter = 0;
-
   isSpinning = true;
   hasSpeakerBeenChosen = false;
 }
@@ -128,8 +127,7 @@ function loop() {
       currentSpeaker.classList.add('selected');
       resultPara.innerText = names[num];
 
-      // synth.play(notes[num], 0.4, 0, 1 / 16);
-      synth.triggerAttackRelease(notes[num], '16n');
+      synth.triggerAttack(notes[num]);
       counter++;
 
       if (!hasSpeakerBeenChosen) {
