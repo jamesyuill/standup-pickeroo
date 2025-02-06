@@ -128,7 +128,7 @@ function loop() {
       resultPara.innerText = names[num];
   
       synth.triggerAttack(notes[num]);
-      synth.triggerRelease();
+      synth.triggerRelease(0.1);
       counter++;
 
       if (!hasSpeakerBeenChosen) {
