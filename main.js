@@ -127,7 +127,7 @@ function loop() {
       currentSpeaker.classList.add('selected');
       resultPara.innerText = names[num];
 
-      synth.triggerAttack(notes[num]);
+      synth.triggerAttackRelease(notes[num],"16n");
       counter++;
 
       if (!hasSpeakerBeenChosen) {
