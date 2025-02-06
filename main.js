@@ -126,8 +126,8 @@ function loop() {
       let currentSpeaker = document.getElementById(names[num]);
       currentSpeaker.classList.add('selected');
       resultPara.innerText = names[num];
-
-      synth.triggerAttackRelease(notes[num],"16n");
+      let now = Tone.now()
+      synth.triggerAttackRelease(notes[num],"16n", now);
       counter++;
 
       if (!hasSpeakerBeenChosen) {
