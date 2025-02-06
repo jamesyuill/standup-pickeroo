@@ -126,9 +126,9 @@ function loop() {
       let currentSpeaker = document.getElementById(names[num]);
       currentSpeaker.classList.add('selected');
       resultPara.innerText = names[num];
-  
-      synth.triggerAttack(notes[num]);
-      synth.triggerRelease(0.1);
+    let now = Tone.now()
+      synth.triggerAttack(notes[num], now);
+      synth.triggerRelease(now+0.1);
       counter++;
 
       if (!hasSpeakerBeenChosen) {
