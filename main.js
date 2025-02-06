@@ -12,7 +12,7 @@ const resultDiv = document.getElementById('result-div');
 const resultPara = document.getElementById('result-para');
 resultPara.innerText = 'Get Spinning!';
 const spinBtn = document.getElementById('spin-button');
-const synth = new Tone.PolySynth().toDestination();
+const synth = new Tone.MonoSynth().toDestination();
 synth.volume.value = -6;
 const notes = ['Bb3', 'C3', 'Db3', 'Eb3', 'F3', 'Gb3', 'Ab4', 'Bb4'];
 
