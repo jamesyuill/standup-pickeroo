@@ -94,6 +94,7 @@ function spinHandler() {
   counter = 0;
   isSpinning = true;
   hasSpeakerBeenChosen = false;
+  spinBtn.setAttribute('disabled', 'true');
 }
 
 const randomNum = (list) => {
@@ -108,6 +109,7 @@ function loop() {
       increment = 5;
       hasSpeakerBeenChosen = true;
       isSpinning = false;
+      spinBtn.removeAttribute('disabled');
     } else if (frames > 500) {
       increment = 40;
     } else if (frames > 400) {
