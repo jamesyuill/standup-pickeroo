@@ -12,9 +12,8 @@ const resultDiv = document.getElementById('result-div');
 const resultPara = document.getElementById('result-para');
 resultPara.innerText = 'Get Spinning!';
 const spinBtn = document.getElementById('spin-button');
-const synth = new Tone.Synth().toDestination();
-synth.volume.value = -6;
-const notes = ['Bb3', 'C3', 'Db3', 'Eb3', 'F3', 'Gb3', 'Ab4', 'Bb4'];
+const player = new Tone.Player('./bip.mp3').toDestination();
+player.volume.value = -6;
 
 const names = [
   'James',
@@ -123,12 +122,10 @@ function loop() {
       if (counter === 0) {
         num = randomNum(names);
       }
+      player.start();
       let currentSpeaker = document.getElementById(names[num]);
       currentSpeaker.classList.add('selected');
       resultPara.innerText = names[num];
-    let now = Tone.now()
-      synth.triggerAttack(notes[num], now);
-      synth.triggerRelease(now+0.1);
       counter++;
 
       if (!hasSpeakerBeenChosen) {
