@@ -12,8 +12,10 @@ const resultDiv = document.getElementById('result-div');
 const resultPara = document.getElementById('result-para');
 resultPara.innerText = 'Get Spinning!';
 const spinBtn = document.getElementById('spin-button');
-const player = new Tone.Player('./bip.mp3').toDestination();
-player.volume.value = -6;
+
+//Adds Sound - but not reliable
+// const player = new Tone.Player('./bip.mp3').toDestination();
+// player.volume.value = -6;
 
 const names = [
   'James',
@@ -90,7 +92,7 @@ renderSpeakers(removed, removedDiv);
 spinBtn.addEventListener('click', spinHandler);
 
 function spinHandler() {
-  Tone.start();
+  // Tone.start(); //Starts the audio Context
   counter = 0;
   isSpinning = true;
   hasSpeakerBeenChosen = false;
@@ -124,7 +126,7 @@ function loop() {
       if (counter === 0) {
         num = randomNum(names);
       }
-      player.start();
+      // player.start(); //triggers the audio clip
       let currentSpeaker = document.getElementById(names[num]);
       currentSpeaker.classList.add('selected');
       resultPara.innerText = names[num];
