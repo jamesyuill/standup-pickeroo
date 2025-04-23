@@ -19,7 +19,7 @@ const spinBtn = document.getElementById('spin-button');
 
 const names = [
   'James',
-  'Alex',
+  'Isobel',
   'Sarah',
   'Joe',
   'Keith',
