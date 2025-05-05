@@ -5,6 +5,9 @@ let frames = 0;
 let num = 0;
 let counter = 0;
 let hasSpeakerBeenChosen = false;
+let startingMinutes = 3;
+let time = startingMinutes * 60;
+let intervalID;
 
 const speakers = document.getElementById('speakers');
 const removedDiv = document.getElementById('removed-speakers');
@@ -12,6 +15,12 @@ const resultDiv = document.getElementById('result-div');
 const resultPara = document.getElementById('result-para');
 resultPara.innerText = 'Get Spinning!';
 const spinBtn = document.getElementById('spin-button');
+const timeDisplay = document.getElementById('time');
+const startBtn = document.getElementById('start');
+const resetBtn = document.getElementById('reset');
+const messageModal = document.getElementById('message-modal');
+const fullFade = document.getElementById('full-fade');
+const dismissBtn = document.getElementById('dismiss');
 
 //Adds Sound - but not reliable
 // const player = new Tone.Player('./bip.mp3').toDestination();
@@ -35,9 +44,9 @@ function renderSpeakers(list, div) {
   if (list.length === 0) {
     div.style.backgroundColor = '#43aa8b';
   } else if (div.id === 'removed-speakers') {
-    div.style.backgroundColor = 'grey';
+    div.style.backgroundColor = 'rgba(255, 255, 255, 0.453)';
   } else {
-    div.style.backgroundColor = 'white';
+    div.style.backgroundColor = 'rgba(255, 255, 255, 0.453)';
   }
 
   if (names.length === 0 && div.id === 'speakers') {
@@ -150,3 +159,57 @@ function loop() {
   requestAnimationFrame(loop);
 }
 loop();
+
+//Timer
+
+timeDisplay.innerText = `${startingMinutes}:00`;
+startBtn.addEventListener('click', startTimer);
+resetBtn.addEventListener('click', resetTimer);
+
+function startTimer() {
+  startBtn.innerText = 'Stop';
+  startBtn.style.backgroundColor = '#f94144';
+  startBtn.removeEventListener('click', startTimer);
+  time--;
+  intervalID = setInterval(updateTimer, 1000);
+  startBtn.addEventListener('click', stopTimer);
+}
+
+function stopTimer() {
+  clearInterval(intervalID);
+}
+
+function resetTimer() {
+  timeDisplay.style.color = 'black';
+
+  time = startingMinutes * 60;
+  timeDisplay.innerText = `${startingMinutes}:00`;
+  startBtn.innerText = 'Start';
+  startBtn.style.backgroundColor = '#297961';
+  startBtn.addEventListener('click', startTimer);
+}
+
+function updateTimer() {
+  const minutes = Math.floor(time / 60);
+  let seconds = time % 60;
+
+  seconds = seconds < 10 ? '0' + seconds : seconds;
+
+  timeDisplay.innerHTML = `${minutes}:${seconds}`;
+
+  time--;
+  if (time < 10) {
+    timeDisplay.style.color = '#f94144';
+  }
+
+  if (time < 0) {
+    fullFade.style.display = 'block';
+
+    clearInterval(intervalID);
+  }
+}
+
+dismissBtn.addEventListener('click', () => {
+  fullFade.style.display = 'none';
+  resetTimer();
+});

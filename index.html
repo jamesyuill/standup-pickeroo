@@ -5,15 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
     <title>Standup Pickeroo</title>
-    
+
     <script type="module" src="main.js" defer></script>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div id="countdown" class="countdown-div">
+      <div class="time" id="time"></div>
+      <div id="timer-buttons">
+        <button id="start">Start</button>
+        <button id="reset">Reset</button>
+      </div>
+    </div>
     <menu id="speakers"></menu>
     <div id="result-div"><p id="result-para"></p></div>
     <div id="controls"><button id="spin-button">Spin!</button></div>
 
     <div id="removed-speakers"></div>
+
+    <div id="full-fade" class="full-fade">
+      <div id="message-modal">
+        <div>Times up, fool!</div>
+        <button id="dismiss">Dismiss</button>
+      </div>
+    </div>
   </body>
 </html>
